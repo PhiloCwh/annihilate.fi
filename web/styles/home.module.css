@@ -1,0 +1,251 @@
+.outBox {
+    margin: 20px auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    background: black;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: PressStart2P;
+    /* Light gray background color */
+}
+
+.cardBox {
+    padding: 36px;
+    max-width: 750px;
+    width: 100%;
+    background-color: rgb(41, 41, 41);
+    height: fit-content;
+    border-radius: 20px;
+    gap: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.title {
+    margin: 0px;
+    font-family: PressStart2P;
+    line-height: 1.5;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.apply {
+    text-align: center;
+    font-family: PressStart2P;
+    line-height: 1.5;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: -20px;
+}
+
+.cardContent {
+    gap: 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+    border: 2px solid rgb(55, 56, 56);
+    border-radius: 16px;
+}
+
+.inputTitle {
+    font-family: PressStart2P;
+    line-height: 1.5;
+    font-weight: 500;
+    font-size: 15px;
+    color: #566370;
+}
+
+.inputFoot {
+    font-family: PressStart2P;
+    line-height: 1.5;
+    font-weight: 500;
+    font-size: 13px;
+    color: #566370;
+}
+
+.ethImg {
+    width: 22px;
+    height: 22px;
+}
+
+.rightContainer {
+    display: flex;
+    align-items: center;
+    background-color: #566370;
+    opacity: 1;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    height: 36px;
+    border-radius: 18px;
+    outline: none;
+    user-select: none;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    font-size: 24px;
+    font-weight: 485;
+    width: initial;
+    padding: 4px 8px 4px 4px;
+    margin-left: 12px;
+    box-shadow: rgba(34, 34, 34, 0.04) 0px 0px 10px 0px;
+}
+
+.rightContainer:hover {
+    background-color: #0E76FD;
+}
+
+.rightBtContainer {
+    background-color: #0E76FD;
+}
+
+.rightText {
+    font-family: PressStart2P;
+    line-height: 1.5;
+    font-size: 15px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.arrowDown {
+
+    margin-top: -35px;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 100px;
+    border: 1px solid rgb(55, 56, 56);
+    background-color: rgb(0, 0, 0);
+    z-index: 1000;
+}
+
+.arrowDown:hover {
+    background-color: #566370;
+}
+
+.footText {
+    font-family: PressStart2P;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.requestBtn {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: none;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.requestBtn:disabled {
+    opacity: 0.6;
+    color: rgb(0, 0, 0);
+}
+
+.xbody {
+    margin-top: 40px;
+    font-size: 14px;
+    font-family: PressStart2P;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+.selectToken {
+    text-align: center;
+    background-color: rgb(19, 19, 19);
+    color: rgb(255, 255, 255);
+    height: 36px;
+    width: 100px;
+    border-radius: 18px;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 4px 8px 4px 12px;
+    margin-left: 12px;
+    white-space: nowrap;
+    /* 防止文本换行 */
+    overflow: hidden;
+    /* 隐藏溢出部分 */
+    text-overflow: ellipsis;
+    /* 使用省略号代替溢出部分 */
+}
+
+.selectBtToken {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background-color: #566370;
+    color: rgb(255, 255, 255);
+    height: 36px;
+    border-radius: 18px;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 4px 8px 4px 4px;
+    margin-left: 12px;
+    display: flex;
+}
+
+.selectBtToken:hover {
+    background-color: #0E76FD;
+}
+
+.rightBtText {
+    text-align: center;
+    width: 60px;
+    white-space: nowrap;
+    /* 防止文本换行 */
+    overflow: hidden;
+    /* 隐藏溢出部分 */
+    text-overflow: ellipsis;
+    /* 使用省略号代替溢出部分 */
+}
+
+.customInput {
+    background: #000 !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-size: 24px !important;
+    padding: 0;
+}
+
+.customTokenInput {
+    background: #000 !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    padding: 0 10px;
+}
+
+.formOutItem {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-family: PressStart2P;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+.ModelnumOut {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.subCard {
+    width: 50%;
+    margin-right: 20px;
+}

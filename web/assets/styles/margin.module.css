@@ -1,0 +1,191 @@
+.outBox {
+    margin: 20px auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    background: black;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: PressStart2P;
+    /* Light gray background color */
+}
+
+.cardBox {
+    padding: 36px;
+    max-width: 750px;
+    width: 100%;
+    background-color: rgb(41, 41, 41);
+    height: fit-content;
+    border-radius: 20px;
+    gap: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.formOutItem {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-family: PressStart2P;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+.ModelnumOut {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.subCard {
+    width: 50%;
+    margin-right: 20px;
+}
+
+.tokenAress {
+    width: 160px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.requestBtn {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: none;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 4px;
+    width: 100%;
+
+}
+
+.requestBtn:disabled {
+    opacity: 0.6;
+    color: rgb(0, 0, 0);
+}
+
+.customTokenInput {
+    background: #000 !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    padding: 0 10px;
+}
+
+.informationBox {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.title {
+    margin: 0px;
+    font-family: PressStart2P;
+    line-height: 1.5;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.requestBtnOutBox {
+    display: flex;
+    justify-content: center;
+}
+
+.tabs {
+    display: flex;
+
+}
+
+.tab {
+    cursor: pointer;
+    font-size: 14px;
+    font-family: PressStart2P;
+    font-weight: 500;
+    color: #FFFFFF;
+    height: 36px;
+    width: 30%;
+    position: relative;
+    border-radius: 10px;
+    padding: 0 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    border: 1px solid #FFFFFF;
+}
+
+.currentTab {
+    color: #0E76FD;
+    border-color: #0E76FD;
+}
+
+.fillSizeAssetRatio {
+    height: 24px;
+    display: flex;
+    align-items: center;
+    margin-left: 2px;
+    /* 例如，这里设置了水平方向上的左边距为 2 像素 */
+    margin-right: 2px;
+    /* 这里设置了水平方向上的右边距为 2 像素 */
+}
+
+.fillRatioUl {
+    height: 100%;
+    font-size: 12px;
+    box-sizing: border-box;
+    background-color: #000;
+    border-radius: 8px;
+    padding-left: 4px;
+    padding-right: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.fillRatioLi {
+    height: 20px;
+    margin: 0 10px;
+}
+
+.fillRatioLiActive {
+    color: #ffffff;
+    font-weight: 600;
+    background-color: #617168;
+    border-radius: 8px;
+}
+
+.marginItem {
+    display: flex;
+    font-size: 12px;
+    font-family: PressStart2P;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+.itemBox {
+    margin-right: 20px;
+}
+
+.leverage {
+
+    display: flex;
+    align-items: center;
+}
+
+.silder {
+    width: 300px;
+    margin: 0 10px;
+}

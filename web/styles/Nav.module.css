@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: black;
+  /* 深色背景 */
+  z-index: 2;
+}
+
+.list {
+  display: flex;
+  position: absolute;
+  margin-left: 60px;
+}
+
+.tittle {
+  font-family: PressStart2P;
+  font-size: 1.25rem;
+  display: flex;
+  gap: 10px;
+  color: #414244;
+}
+
+
+.btn {
+  margin: 0 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: PressStart2P;
+  font-weight: 500;
+  color: #97969c;
+  transition: all .2s;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.btn:hover {
+  color: #FFFFFF;
+}
+
+.btnActive {
+  color: #FFFFFF;
+
+}
+
+
+
+
+
+.btn_12:hover:after,
+.btn_12:hover:before {
+  --progress: 0;
+}
+
+.btn_list {
+  display: flex;
+  position: absolute;
+  right: 20px;
+  margin-Top: 8px;
+  gap: 10px
+}
+
+.connectBtn {
+  display: flex;
+}
+
+.connectWalletBtn {
+  display: flex;
+  align-items: center;
+  background-color: #0E76FD;
+  opacity: 1;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  height: 32px;
+  border-radius: 18px;
+  outline: none;
+  user-select: none;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 14px;
+  font-weight: 485;
+  width: initial;
+  padding: 4px;
+  box-shadow: rgba(34, 34, 34, 0.04) 0px 0px 10px 0px;
+}
+
+.walletAdressBtn {
+  background-color: #566370;
+}
