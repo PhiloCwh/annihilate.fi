@@ -2,7 +2,7 @@
  * @Author: lxj 1851816672@qq.com
  * @Date: 2024-01-02 22:05:01
  * @LastEditors: lxj 1851816672@qq.com
- * @LastEditTime: 2024-05-17 06:16:26
+ * @LastEditTime: 2024-05-19 07:29:27
  * @FilePath: /TheLastOneGame/pages/winner.jsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -45,7 +45,7 @@ const Home = () => {
   const [tokenOutBorrowedRate, setTokenOutBorrowedRate] = useState(0)
   const [lpTokenOutApr, setLpTokenOutApr] = useState(0)
   const [borrowederTokenOutApr, setBorrowederTokenOutApr] = useState(0)
-  const ammContract = useContracts('0x83f4E08CFEc67b6777097A0FAeca1d37Faab922E', ammABI)
+  const ammContract = useContracts('0xEEf3f68A1C56b4B923Ee2a163198641445055446', ammABI)
 
   const getData = async () => {
     console.log(TokenInAddress, TokenOutAddress);
