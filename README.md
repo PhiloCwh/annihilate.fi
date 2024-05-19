@@ -20,6 +20,7 @@
 2. **自动发行做空资产**：用户可以借入资产并进行卖出操作，待价格下跌后再买入资产偿还借贷，实现做空获利。
 3. **去中心化治理**：通过治理代币，社区成员可以参与平台的决策和管理。
 
+
 ## 工作原理
 <img width="563" alt="image" src="https://github.com/PhiloCwh/annihilate.fi/assets/105807963/a465af34-d8c1-444d-812f-481fd4fabf32">
 
@@ -27,6 +28,9 @@
 
 <img width="742" alt="image" src="https://github.com/PhiloCwh/annihilate.fi/assets/105807963/bad93b64-dfb3-42f2-9615-14347c189250">
 
+### 杠杠倍数和做空逻辑 
+
+用户抵押 A eth 贷出 B tokenA,再把 B tokenA换成 C eth，
 
 ### 流动性提供与借贷
 
