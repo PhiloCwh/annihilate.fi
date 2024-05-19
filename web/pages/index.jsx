@@ -2,7 +2,7 @@
  * @Author: lxj 1851816672@qq.com
  * @Date: 2024-01-02 22:05:01
  * @LastEditors: lxj 1851816672@qq.com
- * @LastEditTime: 2024-05-19 09:54:51
+ * @LastEditTime: 2024-05-19 12:33:02
  * @FilePath: /TheLastOneGame/pages/winner.jsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -53,7 +53,7 @@ const Home = () => {
   const [OpenTokenIn, setOpenTokenIn] = useState(false);
   const [OpenTokenOut, setOpenTokenOut] = useState(false);
 
-  const ammContract = useContracts('0x3a21Baed8f4884085cFD5a9b8a1F90305eD44A7f', ammABI)
+  const ammContract = useContracts('0x1664BeDbF88DcecF2D2642D0AE797790a94c26Bd', ammABI)
   const getData = async () => {
     let res = await ammContract.getLpInfo(TokenInAddress, TokenOutAddress).catch(e => {
       console.log(e);
@@ -107,24 +107,38 @@ const Home = () => {
     if (address === undefined) {
       return
     }
+
     let tokenInContract = useContracts(TokenInAddress, tokenABI)
     let res = await tokenInContract.balanceOf(address).catch(e => {
       console.log(e);
     })
     let token = Number(weiToEth(res?.toString()))
     setTokenInbanlance(token)
+
+
   }
 
   const getTokenOutBanlance = async () => {
     if (address === undefined) {
       return
     }
-    let tokenOutContract = useContracts(TokenOutAddress, tokenABI)
-    let res = await tokenOutContract.balanceOf(address).catch(e => {
-      console.log(e);
-    })
-    let token = Number(weiToEth(res?.toString()))
-    setTokenOutbanlance(token)
+    if (TokenOutAddress[1] == '-') {
+      const modifiedString = TokenOutAddress.replace(/^-/, '');
+      let res = await ammContract.wethVault(address, modifiedString).catch(e => {
+        console.log(e);
+      })
+      console.log('rewewre', res,)
+      let token = Number(weiToEth(res?.toString()))
+      setTokenOutbanlance(token)
+    } else {
+      let tokenOutContract = useContracts(TokenOutAddress, tokenABI)
+      let res = await tokenOutContract.balanceOf(address).catch(e => {
+        console.log(e);
+      })
+      let token = Number(weiToEth(res?.toString()))
+      setTokenOutbanlance(token)
+    }
+
   }
 
   const onChange = (e) => {
@@ -164,28 +178,41 @@ const Home = () => {
     if (!amountIn) {
       return
     }
-
-    if (tokenInbanlance == 0 || !tokenInbanlance || tokenInbanlance < amountIn) {
-      toast.error('Not enough token!')
-      return
-    }
-    let tokenInContract = useContracts(TokenInAddress, tokenABI)
-    let res = await tokenInContract.allowance(address, '0x83f4E08CFEc67b6777097A0FAeca1d37Faab922E').catch(e => {
-      console.log(e);
-    })
-    let allowanceNum = Number(weiToEth(res.toString()))
-    console.log(allowanceNum);
-    if (amountIn > allowanceNum) {
-      tokenInApprove()
+    if (TokenOutAddress[0] == '-') {
+      const params = convertToWei(amountIn + '');
+      const modifiedString = TokenOutAddress.replace(/^-/, '');
+      await ammContract.shortToken(modifiedString, { value: params }).then(res => {
+        toast.success('Successfully!')
+        getTokenInBanlance()
+        getTokenOutBanlance()
+      }).catch(e => {
+        console.log('xc', e);
+        toast.error("ERROR!")
+      })
     } else {
-      setSwap()
+      if (tokenInbanlance == 0 || !tokenInbanlance || tokenInbanlance < amountIn) {
+        toast.error('Not enough token!')
+        return
+      }
+      let tokenInContract = useContracts(TokenInAddress, tokenABI)
+      let res = await tokenInContract.allowance(address, '0x83f4E08CFEc67b6777097A0FAeca1d37Faab922E').catch(e => {
+        console.log(e);
+      })
+      let allowanceNum = Number(weiToEth(res.toString()))
+      console.log(allowanceNum);
+      if (amountIn > allowanceNum) {
+        tokenInApprove()
+      } else {
+        setSwap()
+      }
     }
+
   }
 
   const tokenInApprove = async () => {
     let tokenInContract = useContracts(TokenInAddress, tokenABI)
     const maxValue = ethers.constants.MaxUint256;
-    await tokenInContract.approve('0x83f4E08CFEc67b6777097A0FAeca1d37Faab922E', maxValue).then(res => {
+    await tokenInContract.approve('0x1664BeDbF88DcecF2D2642D0AE797790a94c26Bd', maxValue).then(res => {
       setSwap()
     }).catch(e => {
       console.log('bv', e);
@@ -196,9 +223,6 @@ const Home = () => {
   const setSwap = async () => {
     const params = convertToWei(amountIn + '');
     console.log(TokenOutAddress);
-    if (TokenOutAddress[1] == '-') {
-
-    }
     await ammContract.swap(TokenInAddress, TokenOutAddress, params).then(res => {
       toast.success('Successfully!')
       getTokenInBanlance()
@@ -207,6 +231,8 @@ const Home = () => {
       console.log('xc', e);
       toast.error("ERROR!")
     })
+
+
   }
 
   const handleCancelTokenIn = () => {
@@ -231,8 +257,10 @@ const Home = () => {
     }
 
     if (TokenOutAddress[0] == '-') {
-      let res = await ammContract.calShortTokenSwapAmount(address, TokenOutAddress, amountIn).catch(e => {
-        console.log(e, '-');
+      const modifiedString = TokenOutAddress.replace(/^-/, '');
+      console.log(address, TokenOutAddress, modifiedString, amountIn);
+      let res = await ammContract.calShortTokenSwapAmount(address, modifiedString, amountIn).catch(e => {
+        console.log(e, 'short');
       })
       setOutAmount(res?.toString())
     } else {
