@@ -30,7 +30,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    font-size: 10px;
+    font-size: 12px;
     font-family: PressStart2P;
     font-weight: 400;
     color: #FFFFFF;
@@ -61,7 +61,7 @@
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     border-radius: 20px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     text-transform: none;
     display: flex;
@@ -69,12 +69,33 @@
     align-items: center;
     padding: 4px;
     width: 100%;
-
 }
 
 .requestBtn:disabled {
     opacity: 0.6;
     color: rgb(0, 0, 0);
+}
+
+.create {
+    background-color: none;
+    color: #0E76FD;
+    border: 2px solid #577192;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: none;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 4px;
+    width: 100%;
+    margin-left: 20px;
+}
+
+.create:hover {
+    border: 2px solid #0E76FD;
 }
 
 .customTokenInput {
@@ -129,4 +150,20 @@
     background-color: #0E76FD;
     border-bottom: 2px solid #0E76FD;
     z-index: 1000;
+}
+
+.cardContent {
+    padding: 2rem;
+    display: flex;
+    background-color: #000;
+    border: 2px solid rgb(55, 56, 56);
+    border-radius: 16px;
+    justify-content: center;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+.btnText {
+    color: #0E76FD;
+    cursor: pointer;
 }

@@ -2,7 +2,7 @@
  * @Author: lxj 1851816672@qq.com
  * @Date: 2023-12-24 05:11:34
  * @LastEditors: lxj 1851816672@qq.com
- * @LastEditTime: 2024-05-17 14:16:48
+ * @LastEditTime: 2024-05-23 22:46:35
  * @FilePath: /marketPlace/components/Nav.jsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -38,7 +38,7 @@ const Nav = () => {
         <div className={styles.container}>
             <div className={styles.tittle}>
                 <Link href='/'>
-                    <Image src={logo} alt='image' width={52} height={52} />
+                    Annihilate
                 </Link>
                 <div className={styles.list}>
                     <Link href='/'>
@@ -46,10 +46,15 @@ const Nav = () => {
                             Swap
                         </div>
                     </Link>
-                    <Link href='/margin'>
+                    {/* <Link href='/margin'>
                         <div className={`${styles.btn} ${currentPath === '/margin' ? styles.btnActive : ''}`}>
                             Margin
                         </div>
+                    </Link> */}
+                    <Link href='/pool'>
+                        <button className={`${styles.btn} ${currentPath === '/pool' ? styles.btnActive : ''}`}>
+                            Pool
+                        </button>
                     </Link>
                     <Link href='/borrow'>
                         <button className={`${styles.btn} ${currentPath === '/borrow' ? styles.btnActive : ''}`}>

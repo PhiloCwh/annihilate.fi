@@ -2,7 +2,7 @@
  * @Author: lxj 1851816672@qq.com
  * @Date: 2024-01-02 22:05:01
  * @LastEditors: lxj 1851816672@qq.com
- * @LastEditTime: 2024-05-24 11:32:26
+ * @LastEditTime: 2024-05-23 21:54:53
  * @FilePath: /TheLastOneGame/pages/winner.jsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -13,11 +13,12 @@ import { useAccount, useNetwork } from 'wagmi'
 import ammDataABI from 'Abi/ammData.json'
 import ammABI from 'Abi/amm.json'
 import { Input, Modal } from 'antd';
-import styles from '@/assets/styles/borrow.module.css'
+import styles from '@/assets/styles/pool.module.css'
 import toast from 'react-hot-toast'
 import { convertToWei, weiToEth } from '@/assets/utils'
+import Link from 'next/link';
 
-const Home = () => {
+const pool = () => {
     const { address } = useAccount()
     const [isDisabled, setIsDisabled] = useState(true)
     const [amountIn, setamountIn] = useState(0)
@@ -51,7 +52,7 @@ const Home = () => {
         console.log(TokenInAddress, TokenOutAddress);
         let res = await ammContract.getLpInfo(TokenInAddress, TokenOutAddress).catch(e => {
             console.log(e);
-            toast.error('LP not found!')
+            toast.error('liquidity not found!')
             setShowAction(false)
             setTokenInReserve(0)
             setTokenOutReserve(0)
@@ -92,7 +93,6 @@ const Home = () => {
     }, [TokenOutAddress])
 
     useEffect(() => {
-
     }, [amountIn])
 
     const tokenInChange = (e) => {
@@ -150,7 +150,14 @@ const Home = () => {
     return (
         <div className={styles.outBox}>
             <div className={styles.cardBox}>
-                <div className={styles.title}>Search Information</div>
+                <div className={styles.formOutItem} >
+                    <div className={styles.title}>Search Liquidity
+                    </div>
+                    <Link href={`/pool/createPair`} style={{ width: '40%' }}>
+                        <button className={styles.create}>Create a pair</button>
+                    </Link>
+                </div>
+
                 <div className={styles.formOutItem} >
                     <div className={styles.tokenAress}>Token A Adress:</div>
                     <Input className={styles.customTokenInput} value={TokenInAddress} onChange={tokenInChange} />
@@ -162,74 +169,59 @@ const Home = () => {
                 <div className={styles.requestBtnOutBox}>
                     <button style={{ width: '50%' }} className={styles.requestBtn} disabled={(TokenInAddress == '') || (TokenOutAddress == '') || !address} onClick={getData}>{!address ? 'Connect wallet' : !TokenInAddress ? 'Input token  a adress' : !TokenOutAddress ? 'Input token  b adress' : 'Search'}</button>
                 </div>
-                <div className={styles.informationBox}>
-                    <div className={styles.subCard}>
-                        <div className={styles.formOutItem}>
-                            <div>Token A Reserve</div>
-                            <div className={styles.ModelnumOut}>{tokenInReserve}</div>
+                {showAction ?
+                    <div className={styles.informationBox}>
+                        <div className={styles.subCard}>
+                            <div className={styles.formOutItem}>
+                                <div>Token A Reserve</div>
+                                <div className={styles.ModelnumOut}>{tokenInReserve}</div>
+                            </div>
+                            <div className={styles.formOutItem}>
+                                <div>Token A Borrowed</div>
+                                <div className={styles.ModelnumOut}>{tokenInBorrowed}</div>
+                            </div>
+                            <div className={styles.formOutItem}>
+                                <div>Token A Borrowed Rate</div>
+                                <div className={styles.ModelnumOut}>{tokenInBorrowedRate * 100}%</div>
+                            </div>
+                            <div className={styles.formOutItem}>
+                                <div>Lp Token A Apr</div>
+                                <div className={styles.ModelnumOut}>{lpTokenInApr / 10000}%</div>
+                            </div>
+                            <div className={styles.formOutItem}>
+                                <div>Borroweder Token A Apr</div>
+                                <div className={styles.ModelnumOut}>{borrowederTokenInApr / 10000}%</div>
+                            </div>
                         </div>
-                        <div className={styles.formOutItem}>
-                            <div>Token A Borrowed</div>
-                            <div className={styles.ModelnumOut}>{tokenInBorrowed}</div>
+                        <div className={styles.subCard}>
+                            <div className={styles.formOutItem}>
+                                <div>Token B Reserve</div>
+                                <div className={styles.ModelnumOut}>{tokenOutReserve}</div>
+                            </div>
+                            <div className={styles.formOutItem}>
+                                <div>Token B Borrowed</div>
+                                <div className={styles.ModelnumOut}>{tokenOutBorrowed}</div>
+                            </div>
+                            <div className={styles.formOutItem}>
+                                <div>Token B Borrowed Rate</div>
+                                <div className={styles.ModelnumOut}>{tokenOutBorrowedRate * 100}%</div>
+                            </div>
+                            <div className={styles.formOutItem}>
+                                <div>Lp Token B Apr</div>
+                                <div className={styles.ModelnumOut}>{lpTokenOutApr / 10000}%</div>
+                            </div>
+                            <div className={styles.formOutItem}>
+                                <div>Borroweder Token B Apr</div>
+                                <div className={styles.ModelnumOut}>{borrowederTokenOutApr / 10000}%</div>
+                            </div>
                         </div>
-                        <div className={styles.formOutItem}>
-                            <div>Token A Borrowed Rate</div>
-                            <div className={styles.ModelnumOut}>{tokenInBorrowedRate * 100}%</div>
-                        </div>
-                        <div className={styles.formOutItem}>
-                            <div>Lp Token A Apr</div>
-                            <div className={styles.ModelnumOut}>{lpTokenInApr / 10000}%</div>
-                        </div>
-                        <div className={styles.formOutItem}>
-                            <div>Borroweder Token A Apr</div>
-                            <div className={styles.ModelnumOut}>{borrowederTokenInApr / 10000}%</div>
-                        </div>
-                    </div>
-                    <div className={styles.subCard}>
-                        <div className={styles.formOutItem}>
-                            <div>Token B Reserve</div>
-                            <div className={styles.ModelnumOut}>{tokenOutReserve}</div>
-                        </div>
-                        <div className={styles.formOutItem}>
-                            <div>Token B Borrowed</div>
-                            <div className={styles.ModelnumOut}>{tokenOutBorrowed}</div>
-                        </div>
-                        <div className={styles.formOutItem}>
-                            <div>Token B Borrowed Rate</div>
-                            <div className={styles.ModelnumOut}>{tokenOutBorrowedRate * 100}%</div>
-                        </div>
-                        <div className={styles.formOutItem}>
-                            <div>Lp Token B Apr</div>
-                            <div className={styles.ModelnumOut}>{lpTokenOutApr / 10000}%</div>
-                        </div>
-                        <div className={styles.formOutItem}>
-                            <div>Borroweder Token B Apr</div>
-                            <div className={styles.ModelnumOut}>{borrowederTokenOutApr / 10000}%</div>
-                        </div>
-                    </div>
-                </div>
+                    </div> :
+                    <div className={styles.cardContent}>liquidity not found!<Link href={`/pool/createPair`} style={{ width: '40%' }}>
+                        <span className={styles.btnText}>Create a pair</span>
+                    </Link></div>}
             </div>
-            <div className={styles.cardBox}>
-                <div className={styles.tabs}>
-                    {tabs.map(item => {
-                        return <div className={`${styles.tab} ${item.index == currentTab ? styles.currentTab : ''}`} key={item.index} onClick={() => { tabClick(item) }}>{item.name}</div>
-                    })}
-                </div>
-                <div className={styles.formOutItem} >
-                    <div className={styles.tokenAress}>{actionText} Token Address:</div>
-                    <Input className={styles.customTokenInput} value={borrowAddress} onChange={borrowAddressChange} />
-                </div>
-                <div className={styles.formOutItem} >
-                    <div className={styles.tokenAress}>{actionText} Token Amount:</div>
-                    <Input className={styles.customTokenInput} value={borrowAmount} onChange={borrowAmountChange} type="number" />
-                </div>
-                <div className={styles.requestBtnOutBox}>
-                    <button style={{ width: '50%' }} className={styles.requestBtn} disabled={(borrowAddress == '') || (borrowAmount == '') || !address} onClick={action}>{!address ? 'Connect wallet' : !borrowAddress ? `Input ${actionText} adress` : !borrowAmount ? `Input ${actionText} amount` : actionText}</button>
-                </div>
-            </div>
-
         </div >
     )
 }
 
-export default Home
+export default pool
